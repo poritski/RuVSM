@@ -2,7 +2,7 @@
 
 # VSM_COMPUTE.pl by Vladislav Poritski
 # A quick-and-dirty script to compute semantic distances
-# Rev. 2013-
+# Rev. 2013-04-13
 
 use locale;
 use Storable;
