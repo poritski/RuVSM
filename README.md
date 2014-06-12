@@ -14,7 +14,7 @@ These are data and scripts accompanying the paper: V. Dikonov, V. Poritski. [A v
 
 ### Preparing VSMs
 
-Vector space models required to compute similarity between UDC universal words and their purported Russian equivalents must be serialized two-dimensional Perl hashes: word, context &#rarr; frequency. (Note that this format is obsolete and subject to future revisions, mostly due to compatibility issues.)
+Vector space models required to compute similarity between UDC universal words and their purported Russian equivalents must be serialized two-dimensional Perl hashes: word, context &rarr; frequency. (Note that this format is obsolete and subject to future revisions, mostly due to compatibility issues.)
 
 Pre-computed models based on the benchmark Russian corpus can be found in `/benchmark`; they only need to be extracted to the root directory to start using. The designation `full` indicates that each of the VSMs has been built from the complete benchmark corpus, which amounts to 17.5 mln tokens of fiction and newspaper articles. Number `1`, `2`, or `3` indicates linear context window size in tokens. The model with context window 4 turns out to be too bulky to keep it on GitHub.
 
