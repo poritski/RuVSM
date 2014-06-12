@@ -10,15 +10,15 @@ These are data and scripts accompanying the paper: V. Poritski, O. Volchek. [Bui
 
 ## Dialog 2014
 
-These are data and scripts accompanying the paper: V. Dikonov, V. Poritski. [A virtual Russian sense tagged corpus and catching errors in Russian &harr; semantic pivot dictionary](http://www.dialog-21.ru/digests/dialog2014/materials/pdf/DikonovVGPoritskiVV.pdf) (Dialog'14). Here you will find further instructions on how to use the resource.
+These are data and scripts accompanying the paper: V. Dikonov, V. Poritski. [A virtual Russian sense tagged corpus and catching errors in Russian &harr; semantic pivot dictionary](http://www.dialog-21.ru/digests/dialog2014/materials/pdf/DikonovVGPoritskiVV.pdf) (Dialog'14); see also [github.com/dikonov/Universal-Dictionary-of-Concepts](https://github.com/dikonov/Universal-Dictionary-of-Concepts) and [github.com/dikonov/SemCorRus](https://github.com/dikonov/SemCorRus) for complementary resources. Here you will find further instructions on how to use the resource.
 
 ### Preparing VSMs
 
-Vector space models required to compute similarity between UDC universal words and their purported Russian equivalents must be serialized two-dimensional Perl hashes: word, context &#rarr; frequency. (Note that this format is obsolete and subject to future revisions.)
+Vector space models required to compute similarity between UDC universal words and their purported Russian equivalents must be serialized two-dimensional Perl hashes: word, context &#rarr; frequency. (Note that this format is obsolete and subject to future revisions, mostly due to compatibility issues.)
 
 Pre-computed models based on the benchmark Russian corpus can be found in `/benchmark`; they only need to be extracted to the root directory to start using. The designation `full` indicates that each of the VSMs has been built from the complete benchmark corpus, which amounts to 17.5 mln tokens of fiction and newspaper articles. Number `1`, `2`, or `3` indicates linear context window size in tokens. The model with context window 4 turns out to be too bulky to keep it on GitHub.
 
-To build a faithful VSM based on co-occurrence data from the virtual corpus, check out `/virtual` and extract any co-occurrence table you like to the root directory. (Just to play around, `frequency_lts3b.csv` would suffise; detailed descriptions of the co-occurrence tables will be provided later.) Having this done, run:
+Co-occurrence data from the virtual corpus were provided by Viacheslav Dikonov. To build a faithful VSM, check out `/virtual` and extract any co-occurrence table you like to the root directory. (Just to play around, `frequency_lts3b.csv` would suffise; detailed descriptions of the co-occurrence tables will be provided later.) Having this done, run:
 
 `perl vsm_full_pre_new.pl <co-occurrence table signature> <MWE handling> <frequency handling>`
 
