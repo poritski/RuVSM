@@ -1,18 +1,18 @@
-# Overview
+## Overview
 
 This repository contains some data and soft related to distributional modelling of meaning. Specifically, our aim is to provide [vector space models of meaning](http://www.wordspace.collocations.de/doku.php) for Russian, based on medium-size corpora (tens of millions of tokens), and certain non-generic, but highly parameterizable software infrastructure to compute semantic distances.
 
 To run scripts you will need Perl 5.x, preferably 5.10 or higher. Note the ANSI 1251 encoding of all files.
 
-# ITaS 2013
+## ITaS 2013
 
 These are data and scripts accompanying the paper: V. Poritski, O. Volchek. [Building a vector space model of meaning for Russian: A preliminary study](http://www.itas2013.iitp.ru/pdf/1569758773.pdf) (ITaS'13). The resource still remains incomplete and undocumented; actually, it is to be completely rewritten.
 
-# Dialog 2014
+## Dialog 2014
 
-These are data and scripts accompanying the paper: V. Dikonov, V. Poritski. [A virtual Russian sense tagged corpus and catching errors in Russian <=> semantic pivot dictionary](http://www.dialog-21.ru/digests/dialog2014/materials/pdf/DikonovVGPoritskiVV.pdf) (Dialog'14). Here you will find further instructions on how to use the resource.
+These are data and scripts accompanying the paper: V. Dikonov, V. Poritski. [A virtual Russian sense tagged corpus and catching errors in Russian &harr; semantic pivot dictionary](http://www.dialog-21.ru/digests/dialog2014/materials/pdf/DikonovVGPoritskiVV.pdf) (Dialog'14). Here you will find further instructions on how to use the resource.
 
-## Preparing VSMs
+### Preparing VSMs
 
 Vector space models required to compute similarity between UDC universal words and their purported Russian equivalents must be serialized two-dimensional Perl hashes: word, context &#rarr; frequency. (Note that this format is obsolete and subject to future revisions.)
 
@@ -34,13 +34,13 @@ Now observe that the basis of the benchmark VSM (same for any window size) is al
 
 This would yield `common_basis-lts3b-1-max.txt`.
 
-## Computing similarity scores
+### Computing similarity scores
 
-The evaluation proceeds as follows. One of the previous steps gave us, as a by-product, the set of all word<=>sense links attested in the virtual corpus, e.g. `EVAL_lts3b_1.txt`. Now let's assign a similarity score to each link: 
+The evaluation proceeds as follows. One of the previous steps gave us, as a by-product, the set of all word&harr;sense links attested in the virtual corpus, e.g. `EVAL_lts3b_1.txt`. Now let's assign a similarity score to each link: 
 
 `perl vsm_full_compute_reduce_new.pl <window size> <similarity measure> <PMI reweighting> <co-occurrence table signature> <MWE handling> <frequency handling>`
 
-The last three parameters describe the virtual corpus based VSM, same as before. Another three command line arguments define properties of the benchmark VSM and the computation procedure. "Window size" is linear context window size in tokens, from `1` to `3` with available pre-computed models. "Similarity measure" is invariantly `cosine`. (In earlier builds, `jaccard` for Jaccard coefficient, `kl` for symmetrized Kullback-Leibler divergence, and `js` for Jensen-Shannon divergence were also available. If necessary, you can restore the respective subroutines, just take a look at `vsm_full_compute_reduce.pl` in `/ITaS_2013`.) "PMI reweighting" is a boolean value: `1` to apply PMI, `0` to operate with raw frequency counts. Note that the virtual corpus size in tokens is somewhat guesstimated to be 10^6, in fact it should be around 1.4*10^5.
+The last three parameters describe the virtual corpus based VSM, same as before. Another three command line arguments define properties of the benchmark VSM and the computation procedure. "Window size" is linear context window size in tokens, from `1` to `3` with available pre-computed models. "Similarity measure" is invariantly `cosine`. (In earlier builds, `jaccard` for Jaccard coefficient, `kl` for symmetrized Kullback-Leibler divergence, and `js` for Jensen-Shannon divergence were also available. If necessary, you can restore the respective subroutines, just take a look at `vsm_full_compute_reduce.pl` in `/ITaS_2013`.) "PMI reweighting" is a boolean value: `1` to apply PMI, `0` to operate with raw frequency counts. Note that the virtual corpus size in tokens is somewhat guesstimated to be 10<sup>6</sup>, in fact it should be around 1.4*10<sup>5</sup>.
 
 As an example, take the benchmark VSM with 2-token window and turn PMI reweighting on:
 
